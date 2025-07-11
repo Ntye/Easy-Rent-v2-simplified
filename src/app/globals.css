@@ -1,42 +1,124 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    font-size: 12px;
+    line-height: 1.4;
+    overflow-x: hidden;
+  }
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  p {
+    font-weight: 400;
+    letter-spacing: -0.01em;
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+@layer components {
+  /* --- Buttons --- */
+  .btn-primary {
+    @apply bg-primary-500 text-white rounded-lg px-4 py-2 font-medium transition-colors hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-primary-500 border border-primary-500 rounded-lg px-4 py-2 font-medium transition-colors hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2;
+  }
+
+  .btn-link {
+    @apply text-primary-500 bg-transparent py-2 px-4 font-medium hover:text-primary-700 focus:outline-none;
+  }
+
+  /* --- Cards --- */
+  .card {
+    @apply bg-card-light dark:bg-card-dark rounded-card shadow-card border border-border-light dark:border-border-dark overflow-hidden transition-shadow hover:shadow-card-hover;
+  }
+
+  /* --- Forms --- */
+  .input {
+    @apply w-full px-3 py-2 border border-border-light dark:border-border-dark rounded-md bg-background-light dark:bg-surface-dark text-text-light dark:text-text-dark focus:outline-none focus:border-primary-400 focus:ring-2 focus:ring-primary-100 dark:focus:ring-primary-700 transition-colors;
+  }
+
+  .label {
+    @apply block mb-2 text-sm font-medium text-text-light-secondary dark:text-text-light-secondary;
+  }
+
+  /* --- Navbar --- */
+  .navbar {
+    @apply bg-background-light dark:bg-background-dark border-b border-border-light dark:border-border-dark h-16;
+  }
+
+  .nav-link {
+    @apply text-text-light-secondary dark:text-text-light-secondary font-medium px-4 py-2 transition-colors hover:text-primary-500 dark:hover:text-primary-400;
+  }
+
+  .nav-link.active {
+    @apply text-primary-500 dark:text-primary-400;
+  }
+
+  /* --- Stepper --- */
+  .stepper {
+    @apply flex justify-between mb-8;
+  }
+
+  .stepper-step {
+    @apply flex flex-col items-center relative flex-1;
+  }
+
+  .step-indicator {
+    @apply w-10 h-10 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark flex items-center justify-center font-medium z-10;
+  }
+
+  .step-indicator.active {
+    @apply bg-primary-500 border-primary-500 text-white;
+  }
+
+  .step-indicator.completed {
+    @apply bg-success-500 border-success-500 text-white;
+  }
+
+  .step-connector {
+    @apply absolute top-5 w-[calc(100%-2.5rem)] h-0.5 bg-border-light dark:bg-border-dark;
+  }
+
+  .step-connector.active {
+    @apply bg-primary-500;
+  }
+
+  /* --- Vehicle Cards --- */
+  .vehicle-card {
+    @apply rounded-card overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover;
+  }
+
+  /* --- Badges --- */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-success {
+    @apply bg-success-100 text-success-700;
+  }
+
+  .badge-error {
+    @apply bg-error-100 text-error-700;
+  }
+
+  .badge-warning {
+    @apply bg-warning-100 text-warning-700;
+  }
+
+  /* --- Section Containers --- */
+  .section-container {
+    @apply p-8 mb-8 bg-surface-light dark:bg-surface-dark rounded-lg;
+  }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }
